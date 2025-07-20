@@ -1,0 +1,35 @@
+# Blender 3.3.1 MTL File: 'Office_desks.blend'
+# www.blender.org
+
+newmtl Desk_ver03_drawers
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver03_drawers_BaseColor.png
+map_Ns Desk_ver03_drawers_Roughness.png
+refl Desk_ver03_drawers_Metallic.png
+
+newmtl Desk_ver03_sidetable
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver03_sidetable_BaseColor.png
+map_Ns Desk_ver03_sidetable_Roughness.png
+refl Desk_ver03_sidetable_Metallic.png
+
+newmtl Desk_ver03_table
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver03_table_BaseColor.png
+map_Ns Desk_ver03_table_Roughness.png
+refl Desk_ver03_table_Metallic.png

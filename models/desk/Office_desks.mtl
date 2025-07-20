@@ -1,0 +1,93 @@
+# Blender MTL File: 'Office desks.blend'
+# Material Count: 7
+
+newmtl Desk_ver01_drawers
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver01_drawers_BaseColor.png
+map_Ns Desk_ver01_drawers_Roughness.png
+refl Desk_ver01_drawers_Metallic.png
+
+newmtl Desk_ver01_table
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver01_table_BaseColor.png
+map_Ns Desk_ver01_table_Roughness.png
+refl Desk_ver01_table_Metallic.png
+
+newmtl Desk_ver02_drawers
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver02_drawers_BaseColor.png
+map_Ns Desk_ver02_drawers_Roughness.png
+refl Desk_ver02_drawers_Metallic.png
+
+newmtl Desk_ver02_table
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver02_table_BaseColor.png
+map_Ns Desk_ver02_table_Roughness.png
+refl Desk_ver02_table_Metallic.png
+
+newmtl Desk_ver03_drawers
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver03_drawers_BaseColor.png
+map_Ns Desk_ver03_drawers_Roughness.png
+refl Desk_ver03_drawers_Metallic.png
+
+newmtl Desk_ver03_sidetable
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver03_sidetable_BaseColor.png
+map_Ns Desk_ver03_sidetable_Roughness.png
+refl Desk_ver03_sidetable_Metallic.png
+
+newmtl Desk_ver03_table
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver03_table_BaseColor.png
+map_Ns Desk_ver03_table_Roughness.png
+refl Desk_ver03_table_Metallic.png

@@ -1,0 +1,24 @@
+# Blender MTL File: 'Office_desks (1).blend'
+# Material Count: 2
+
+newmtl Desk_ver02_drawers
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver02_drawers_BaseColor.png
+map_Ns Desk_ver02_drawers_Roughness.png
+refl Desk_ver02_drawers_Metallic.png
+
+newmtl Desk_ver02_table
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Desk_ver02_table_BaseColor.png
+map_Ns Desk_ver02_table_Roughness.png
+refl Desk_ver02_table_Metallic.png
