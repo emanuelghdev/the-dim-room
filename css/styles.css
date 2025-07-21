@@ -1,0 +1,58 @@
+/* Estilo generales */
+body {
+    font-family: Courier, monospace;
+}
+
+/* Estilo de la card */
+.message-card {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: default;
+}
+
+.message-card.hidden {
+    display: none;
+}
+
+.message-card-content {
+    background: #1e1e1e;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.8);
+    max-width: 400px;
+    text-align: center;
+}
+
+.message-card-content h2 {
+    text-align: left;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #eee;
+}
+
+.message-card-content ul {
+    list-style-type: none;
+}
+
+#message-card-close {
+    background: #ff6b6b;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#message-card-close:hover {
+    background: #ff4c4c;
+}

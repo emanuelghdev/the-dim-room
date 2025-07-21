@@ -41,7 +41,7 @@ class MyCajaFusibles extends THREE.Object3D {
         abierta[0] = true;
     }
     else if(objeto.parent.parent == this.tapa && abierta[0] == false){  // Si el objeto clicado es la puerta y no tenemos la llave
-        window.alert("La caja de fusibles está cerrada y parece necesitar una llave para poder abrirse" +
+        showCard("La caja de fusibles está cerrada y parece necesitar una llave para poder abrirse" +
                      "\n\nEs necesario OBTENER LA LLAVE primero" +
                      "\n\nNo parece algo de lo que preocuparse sin tener la red eléctrica activa");
     }

@@ -1,43 +1,74 @@
 <!DOCTYPE html>
 
 <html>
-
-<head>
-    <title>The Dim Room</title>
-    <meta charset="utf-8">
-    <link rel="icon" href="imgs/favicon.png" type="image/x-icon">
-    <script type="text/javascript" src="libs/jquery.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert@2/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
-    
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "./libs/three.module.js"
+    <head>
+        <meta charset="utf-8">
+        <title>The Dim Room</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="icon" href="imgs/favicon.png" type="image/x-icon">
+        <script type="text/javascript" src="libs/jquery.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert@2/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+        
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "./libs/three.module.js"
+                }
             }
+        </script>
+
+        <script type="module" src="objects/MyScene.js"></script> 
+
+        <div style="position: absolute; left:100px; top:10px; color:white;" id="Messages"> 
+        </div>  
+        
+        <style>
+            body{
+                margin: 0;
+                overflow: hidden; 
+            }
+        </style>
+    </head>
+    <body style="cursor: crosshair;">
+        <!-- Div para mostrar mensajes personalizados -->
+        <div id="message-card" class="message-card hidden">
+            <div class="message-card-content">
+                <h2 id="message-card-text"></h2>
+                <button id="message-card-close">OK</button>
+            </div>
+        </div>
+
+        <!-- Div which will show statistical information -->
+        <div id="Stats-output">
+        </div>
+
+        <!-- Div which will hold the Output -->
+        <div id="WebGL-output">
+        </div>
+    </body>
+
+    <!-- Script de control de la card -->
+    <script>
+        // Variable global para pausar/reanudar el loop
+        window.isPaused = false;
+
+        function showCard(text) {
+            const card = document.getElementById('message-card');
+            document.getElementById('message-card-text').innerText = text;
+            card.classList.remove('hidden');
+
+            // Pausamos el loop de actualización
+            window.isPaused = true;
         }
+        
+        document.getElementById('message-card-close').addEventListener('click', () => {
+            document.getElementById('message-card').classList.add('hidden');
+
+            // Reanudamos el loop
+            window.isPaused = false;
+            // Volvemos a lanzar update()
+            window.scene.update();
+        });
     </script>
-
-    <script type="module" src="objects/MyScene.js"></script> 
-
-    <div style="position: absolute; left:100px; top:10px; color:white;" id="Messages"> 
-    </div>  
-    
-    <style>
-        body{
-            margin: 0;
-            overflow: hidden; 
-        }
-    </style>
-</head>
-<body style="cursor: crosshair;">
-
-<!-- Div which will show statistical information -->
-<div id="Stats-output">
-</div>
-
-<!-- Div which will hold the Output -->
-<div id="WebGL-output">
-</div>
-</body>
 </html>

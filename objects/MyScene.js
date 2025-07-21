@@ -1922,6 +1922,9 @@ class MyScene extends THREE.Scene {
   }
 
   onKeyDown (event){
+    // Si estamos en pausa (card abierta), no hacer nada
+    if (window.isPaused) return;
+
     var x = event.wich || event.key;
 
     // Creamos el string que saldrá cuanto se pulse "Q" por ayuda y "P" por la pista
@@ -1939,7 +1942,7 @@ class MyScene extends THREE.Scene {
     switch(x){
       // Si se pulsa la Q se muestra un mensaje
       case "q":
-        window.alert(str1);
+        showCard(str1);
       break;
 
       // Si se pulsa la D se activa/desactiva el modo desarrollador
@@ -1956,12 +1959,15 @@ class MyScene extends THREE.Scene {
 
       // Si se pulsa la P se muestra una pequeña pista
       case "p":
-        window.alert(str2);
+        showCard(str2);
       break;
     }
   }
 
   onMouseDown(event) {
+    // Si estamos en pausa (card abierta), no hacer nada
+    if (window.isPaused) return;
+
     // Reutilizamos esos objetos, evitamos construirlos en cada pulsación
     // Se obtiene la posicion del clic
     // en coordenadas de dispositivo normalizado
@@ -2083,10 +2089,10 @@ class MyScene extends THREE.Scene {
 
         // Procesamos el mensaje que se le mostrará al jugador
         if(this.mensajeLibros){
-          window.alert("Es un libro, definitivamente no es nada interesante");
+          showCard("Es un libro, definitivamente no es nada interesante");
         }
         else {
-          window.alert("Es un libro, no parece especialmente interesante");  
+          showCard("Es un libro, no parece especialmente interesante");  
         }
 
         // Sumamos uno a las veces se ha mostrado el mensaje
@@ -2107,10 +2113,10 @@ class MyScene extends THREE.Scene {
     if (pickedObjects.length > 0 && this.mensajeTazas < 4) {
       // Procesamos el mensaje que se le mostrará al jugador
       if(this.mensajeTazas < 3){
-        window.alert("Esta taza parece algo inservible, está vacía aunque aún huele a café");
+        showCard("Esta taza parece algo inservible, está vacía aunque aún huele a café");
       }
       else {
-        window.alert("El olor del café proveniente de la taza podría provocarle sed a cualquiera, " +
+        showCard("El olor del café proveniente de la taza podría provocarle sed a cualquiera, " +
                      "lástima que por aquí no parece haber nada parecido");
       }
 
@@ -2134,7 +2140,7 @@ class MyScene extends THREE.Scene {
          !(selectedObject.parent.parent == this.rollos3 && this.cajonesEscritorio[3] == false)){
         
         // Procesamos el mensaje que se le mostrará al jugador
-        window.alert("Parece un rollo de papel higiénico, no se ve nada útil");
+        showCard("Parece un rollo de papel higiénico, no se ve nada útil");
 
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeRollos++;
@@ -2160,7 +2166,7 @@ class MyScene extends THREE.Scene {
          !(selectedObject.parent.parent == this.papeles3 && this.cajonesMesa[6] == false)){
         
         // Procesamos el mensaje que se le mostrará al jugador
-        window.alert("Solo es un montón de hojas de papel");
+        showCard("Solo es un montón de hojas de papel");
 
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajePapeles++;
@@ -2186,7 +2192,7 @@ class MyScene extends THREE.Scene {
             this.cajonesMesa[2] == false)){
         
         // Procesamos el mensaje que se le mostrará al jugador
-        window.alert("Es una vela aromática, parece no servir para absolutamente nada");
+        showCard("Es una vela aromática, parece no servir para absolutamente nada");
 
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeVelas++;
@@ -2206,13 +2212,13 @@ class MyScene extends THREE.Scene {
     if (pickedObjects.length > 0) { 
       // Procesamos el mensaje que se le mostrará al jugador
       if(this.luzReparada[0] && this.palancaArriba[0] && this.mensajeOrdenador1 < 1){
-        window.alert("El ordenador ahora está encendido. Aunque no parece ser de mucha ayuda igualmente");
+        showCard("El ordenador ahora está encendido. Aunque no parece ser de mucha ayuda igualmente");
 
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeOrdenador1++;
       }
       else if(this.mensajeOrdenador2 < 1){
-        window.alert("El ordenador está completamente apagado. De esta forma no parece ser de mucha ayuda");
+        showCard("El ordenador está completamente apagado. De esta forma no parece ser de mucha ayuda");
 
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeOrdenador2++;
@@ -2229,13 +2235,13 @@ class MyScene extends THREE.Scene {
     if (pickedObjects.length > 0) { 
       // Procesamos el mensaje que se le mostrará al jugador
       if(this.luzReparada[0] && this.palancaArriba[0] && this.mensajeVentilador1 < 1){
-        window.alert("¡Qué refrescante!");
+        showCard("¡Qué refrescante!");
 
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeVentilador1++;
       }
       else if((this.luzReparada[0] == false || this.palancaArriba[0] == false) && this.mensajeVentilador2 < 1){
-        window.alert("Si se pudiera encender de alguna forma seguro que refrescaría un poco el ambiente, aunque realmente eso no parezca ayudar en nada");
+        showCard("Si se pudiera encender de alguna forma seguro que refrescaría un poco el ambiente, aunque realmente eso no parezca ayudar en nada");
         
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeVentilador2++;
@@ -2251,7 +2257,7 @@ class MyScene extends THREE.Scene {
     // pickedObjects es un vector ordenado desde el objeto más cercano
     if (pickedObjects.length > 0 && this.mensajePapelera < 1) {
       // Procesamos el mensaje que se le mostrará al jugador
-      window.alert("La papelera no tiene ninguna bolsa puesta, mejor no tirar nada dentro");
+      showCard("La papelera no tiene ninguna bolsa puesta, mejor no tirar nada dentro");
 
       // Sumamos uno a las veces se ha mostrado el mensaje
       this.mensajePapelera++;
@@ -2731,7 +2737,7 @@ class MyScene extends THREE.Scene {
         selectedObject.visible = false;
         this.poseerLlaveInglesa[0] = true;
 
-        window.alert("Has obtenido LLAVE INGLESA");
+        showCard("Has obtenido LLAVE INGLESA");
       }
     }
   }
@@ -2830,7 +2836,7 @@ class MyScene extends THREE.Scene {
         this.tapaCajaFuerte = false;
       }
       else {
-        window.alert("Se trata de una caja fuerte electroimantada, se necesita de corriente eléctrica para abrirla" +
+        showCard("Se trata de una caja fuerte electroimantada, se necesita de corriente eléctrica para abrirla" +
                      "\n\nEs necesario REPARAR LA ELECTRICIDAD primero");
       }
     }
@@ -2852,7 +2858,7 @@ class MyScene extends THREE.Scene {
         selectedObject.visible = false;
         this.poseerLlaveSeguridad[0] = true;
 
-        window.alert("Has obtenido LLAVE DE SEGURIDAD");
+        showCard("Has obtenido LLAVE DE SEGURIDAD");
       }
     }
   }
@@ -2939,12 +2945,12 @@ class MyScene extends THREE.Scene {
         // Mostramos un mensaje tras tocar la puerta
         if(this.luzReparada[0] && this.palancaArriba[0]){
           // Se muestra el mensaje sin haber terminado de completar todos los pasos
-          window.alert("La puerta se abre eléctricamente, pero por algún motivo parece no estar conectada a la luz" +
+          showCard("La puerta se abre eléctricamente, pero por algún motivo parece no estar conectada a la luz" +
                      "\n\nEs necesario ACTIVAR LA CORRIENTE DE LA PUERTA primero");
         }
         else{
           // Se muestra el mensaje sin haber encendido la luz aún
-          window.alert("La puerta se abre eléctricamente, pero parece no haber corriente" +
+          showCard("La puerta se abre eléctricamente, pero parece no haber corriente" +
                      "\n\nEs necesario REPARAR LA ELECTRICIDAD primero");
         }
       }
@@ -2957,7 +2963,7 @@ class MyScene extends THREE.Scene {
                 "\n\n¡Felicidades, te has pasado el juego!";
 
       // Se muestra el mensaje tras abrir la puerta
-      window.alert(str);
+      showCard(str);
 
       that.modoJuegoTerminado = true;
     }
@@ -3007,6 +3013,9 @@ class MyScene extends THREE.Scene {
 
   update () {
     
+    // Si hemos pausado (al mostrar una card), paramos aquí
+    if (window.isPaused) return;
+
     if (this.stats) this.stats.update();
     
     // Se actualizan los elementos de la escena para cada frame
@@ -3113,6 +3122,7 @@ $(function () {
   
   // Se instancia la escena pasándole el  div  que se ha creado en el html para visualizar
   var scene = new MyScene("#WebGL-output");
+  window.scene = scene;
 
   // Se añaden los listener de la aplicación. En este caso, el que va a comprobar cuándo se modifica el tamaño de la ventana de la aplicación.
   window.addEventListener ("resize", () => scene.onWindowResize());

@@ -1,0 +1,8 @@
+# Ignorar logs
+*.log
+
+# Ignorar archivos de sistema
+.DS_Store
+.directory
+Thumbs.db
+desktop.ini
