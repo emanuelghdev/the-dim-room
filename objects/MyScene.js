@@ -187,8 +187,9 @@ class MyScene extends THREE.Scene {
     // Añadimos el armario que hemos creado en MyArmario.js
     this.armarioIzquierda = new MyArmario(null, "");
 
-    // Quitamos la puerta de la izquierda
+    // Quitamos las puertas de este armario
     this.armarioIzquierda.children[2].removeFromParent();
+    this.armarioIzquierda.children[1].removeFromParent();
 
     // Lo posicionamos correctamente y lo añadimos a la escena
     this.armarioIzquierda.scale.x = 9;     // Multiplicamos por 9 y 12 para conseguir unos 90 cm de ancho y unos 120 cm de altura
@@ -751,7 +752,7 @@ class MyScene extends THREE.Scene {
     this.modoJuegoTerminado = false;
 
     // Intensidad de la luz ambiental
-    this.ambientLightIntensidad = 0.1;
+    this.ambientLightIntensidad = 0.08;
 
     // Variable para saber si un objeto está en movimiento y evitar que se solapen los movimientos de lso objetos
     this.enMovimiento = [0];
@@ -1928,18 +1929,23 @@ class MyScene extends THREE.Scene {
     var x = event.wich || event.key;
 
     // Creamos el string que saldrá cuanto se pulse "Q" por ayuda y "P" por la pista
-    var str1 = "Las acciones que se pueden realizar son las siguientes:" +
-                  "\n\n-Mover el personaje: Pulsar las teclas del cursor o las teclas WASD" +
-                  "\n\n-Mover la cámara: Mover el puntero del ratón" +
-                  "\n\n-Interaccionar con los objetos: Clic izquierdo con el ratón" +
-                  "\n\n-Mostrar una pista (solo en caso de ser estrictamente necesario): Pulsar la tecla P" +
-                  "\n\n-Activar/desactivar el modo desarrollador: Pulsar la tecla R" +
-                  "\n\n\nNOTA: Para abrir la puerta es necesario hacer clic sobre el POMO de la puerta ";
+    var str1 = "<p>Las acciones que se pueden realizar son las siguientes:</p>" + 
+                  "<ul><li>✦ Mover el personaje: Pulsar las teclas WASD o las teclas de dirección</li>" +
+                  "<li>✦ Mover la cámara: Mover el puntero del ratón</li>" +
+                  "<li>✦ Interactuar con los objetos: Clic izquierdo con el ratón</li>" +
+                  "<li>✦ Mostrar una pista: Pulsar la tecla P</li>" +
+                  "<li>✦ Activar/desactivar el modo desarrollador: Pulsar la tecla R</li></ul>" +
+                  "<p>NOTA: Para abrir la puerta es necesario hacer clic sobre el POMO de la puerta</p>";
 
-    var str2 = "La clave está en los OBJETOS ROJOS... aunque no en todos...";
+    var str2 = "<p>La clave está en los OBJETOS ROJOS... aunque no en todos...</p>";
 
     // Según la tecla que se pulse hacemos un tratamiento u otro
     switch(x){
+      // Si se pulsa la Escape se muestra un menu
+      case "Escape":
+        showCard(str1);
+      break;
+
       // Si se pulsa la Q se muestra un mensaje
       case "q":
         showCard(str1);
@@ -2077,7 +2083,7 @@ class MyScene extends THREE.Scene {
     var pickedObjects = raycaster.intersectObjects(objetos.children, true) ;
 
     // pickedObjects es un vector ordenado desde el objeto más cercano
-    if (pickedObjects.length > 0 && this.mensajeLibros < 2) {
+    if (pickedObjects.length > 0) {
       // Se puede referenciar el Mesh clicado
       var selectedObject = pickedObjects[0].object;
 
@@ -2089,10 +2095,10 @@ class MyScene extends THREE.Scene {
 
         // Procesamos el mensaje que se le mostrará al jugador
         if(this.mensajeLibros){
-          showCard("Es un libro, definitivamente no es nada interesante");
+          showCard("Es otro libro de autoayuda... definitivamente no es nada interesante");
         }
         else {
-          showCard("Es un libro, no parece especialmente interesante");  
+          showCard("Es un libro, pero no parece especialmente interesante");  
         }
 
         // Sumamos uno a las veces se ha mostrado el mensaje
@@ -2110,14 +2116,14 @@ class MyScene extends THREE.Scene {
     var pickedObjects = raycaster.intersectObjects(objetos.children, true) ;
 
     // pickedObjects es un vector ordenado desde el objeto más cercano
-    if (pickedObjects.length > 0 && this.mensajeTazas < 4) {
+    if (pickedObjects.length > 0) {
       // Procesamos el mensaje que se le mostrará al jugador
       if(this.mensajeTazas < 3){
         showCard("Esta taza parece algo inservible, está vacía aunque aún huele a café");
       }
       else {
         showCard("El olor del café proveniente de la taza podría provocarle sed a cualquiera, " +
-                     "lástima que por aquí no parece haber nada parecido");
+                  "lástima que por aquí no parece haber nada parecido");
       }
 
       // Sumamos uno a las veces se ha mostrado el mensaje
@@ -2131,7 +2137,7 @@ class MyScene extends THREE.Scene {
     var pickedObjects = raycaster.intersectObjects(objetos.children, true) ;
 
     // pickedObjects es un vector ordenado desde el objeto más cercano
-    if (pickedObjects.length > 0 && this.mensajeRollos < 1) { 
+    if (pickedObjects.length > 0) { 
       // Se puede referenciar el Mesh clicado
       var selectedObject = pickedObjects[0].object;
 
@@ -2140,7 +2146,7 @@ class MyScene extends THREE.Scene {
          !(selectedObject.parent.parent == this.rollos3 && this.cajonesEscritorio[3] == false)){
         
         // Procesamos el mensaje que se le mostrará al jugador
-        showCard("Parece un rollo de papel higiénico, no se ve nada útil");
+        showCard("Parece un rollo de papel higiénico, no es muy útil ahora mismo");
 
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeRollos++;
@@ -2158,7 +2164,7 @@ class MyScene extends THREE.Scene {
     var pickedObjects = raycaster.intersectObjects(objetos.children, true) ;
 
     // pickedObjects es un vector ordenado desde el objeto más cercano
-    if (pickedObjects.length > 0 && this.mensajePapeles < 1) { 
+    if (pickedObjects.length > 0) { 
       // Se puede referenciar el Mesh clicado
       var selectedObject = pickedObjects[0].object;
 
@@ -2184,7 +2190,7 @@ class MyScene extends THREE.Scene {
     var pickedObjects = raycaster.intersectObjects(objetos.children, true) ;
 
     // pickedObjects es un vector ordenado desde el objeto más cercano
-    if (pickedObjects.length > 0 && this.mensajeVelas < 1) { 
+    if (pickedObjects.length > 0) { 
       // Se puede referenciar el Mesh clicado
       var selectedObject = pickedObjects[0].object;
 
@@ -2192,7 +2198,7 @@ class MyScene extends THREE.Scene {
             this.cajonesMesa[2] == false)){
         
         // Procesamos el mensaje que se le mostrará al jugador
-        showCard("Es una vela aromática, parece no servir para absolutamente nada");
+        showCard("Es una vela aromática... huele bien, pero no creo que me saque de aquí");
 
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeVelas++;
@@ -2211,14 +2217,14 @@ class MyScene extends THREE.Scene {
     // pickedObjects es un vector ordenado desde el objeto más cercano
     if (pickedObjects.length > 0) { 
       // Procesamos el mensaje que se le mostrará al jugador
-      if(this.luzReparada[0] && this.palancaArriba[0] && this.mensajeOrdenador1 < 1){
+      if(this.luzReparada[0] && this.palancaArriba[0]){
         showCard("El ordenador ahora está encendido. Aunque no parece ser de mucha ayuda igualmente");
 
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeOrdenador1++;
       }
-      else if(this.mensajeOrdenador2 < 1){
-        showCard("El ordenador está completamente apagado. De esta forma no parece ser de mucha ayuda");
+      else{
+        showCard("El ordenador está completamente apagado. Si al menos pudiera jugar al Baldur's Gate III...");
 
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeOrdenador2++;
@@ -2234,14 +2240,14 @@ class MyScene extends THREE.Scene {
     // pickedObjects es un vector ordenado desde el objeto más cercano
     if (pickedObjects.length > 0) { 
       // Procesamos el mensaje que se le mostrará al jugador
-      if(this.luzReparada[0] && this.palancaArriba[0] && this.mensajeVentilador1 < 1){
+      if(this.luzReparada[0] && this.palancaArriba[0]){
         showCard("¡Qué refrescante!");
 
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeVentilador1++;
       }
-      else if((this.luzReparada[0] == false || this.palancaArriba[0] == false) && this.mensajeVentilador2 < 1){
-        showCard("Si se pudiera encender de alguna forma seguro que refrescaría un poco el ambiente, aunque realmente eso no parezca ayudar en nada");
+      else if((this.luzReparada[0] == false || this.palancaArriba[0] == false)){
+        showCard("Si se pudiera encender de alguna forma seguro que refrescaría un poco el ambiente");
         
         // Sumamos uno a las veces se ha mostrado el mensaje
         this.mensajeVentilador2++;
@@ -2255,7 +2261,7 @@ class MyScene extends THREE.Scene {
     var pickedObjects = raycaster.intersectObjects(objetos.children, true) ;
 
     // pickedObjects es un vector ordenado desde el objeto más cercano
-    if (pickedObjects.length > 0 && this.mensajePapelera < 1) {
+    if (pickedObjects.length > 0) {
       // Procesamos el mensaje que se le mostrará al jugador
       showCard("La papelera no tiene ninguna bolsa puesta, mejor no tirar nada dentro");
 
@@ -2837,7 +2843,7 @@ class MyScene extends THREE.Scene {
       }
       else {
         showCard("Se trata de una caja fuerte electroimantada, se necesita de corriente eléctrica para abrirla" +
-                     "\n\nEs necesario REPARAR LA ELECTRICIDAD primero");
+                 "<p class='second-p'>Es necesario REPARAR LA ELECTRICIDAD primero</p>");
       }
     }
   }
@@ -2946,21 +2952,21 @@ class MyScene extends THREE.Scene {
         if(this.luzReparada[0] && this.palancaArriba[0]){
           // Se muestra el mensaje sin haber terminado de completar todos los pasos
           showCard("La puerta se abre eléctricamente, pero por algún motivo parece no estar conectada a la luz" +
-                     "\n\nEs necesario ACTIVAR LA CORRIENTE DE LA PUERTA primero");
+                   "<p class='second-p'>Es necesario ACTIVAR LA CORRIENTE DE LA PUERTA primero</p>");
         }
         else{
           // Se muestra el mensaje sin haber encendido la luz aún
           showCard("La puerta se abre eléctricamente, pero parece no haber corriente" +
-                     "\n\nEs necesario REPARAR LA ELECTRICIDAD primero");
+                   "<p class='second-p'>Es necesario REPARAR LA ELECTRICIDAD primero</p>");
         }
       }
     }
 
     function finalJuego (that) {
       // Creamos el string que saldrá al pasarse el juego
-      var str = "----------------------------------------THE DIM ROOM---------------------------------------" +
-                "\n\nHas podido salir de la habitacion" +
-                "\n\n¡Felicidades, te has pasado el juego!";
+      var str = "<h2>THE DIM ROOM</h2>" +
+                "<p class='second-p'>Has podido salir de la habitacion</p>" +
+                "<p class='second-p'>¡Felicidades, te has pasado el juego!</p>";
 
       // Se muestra el mensaje tras abrir la puerta
       showCard(str);

@@ -21,29 +21,22 @@
         <script type="module" src="objects/MyScene.js"></script> 
 
         <div style="position: absolute; left:100px; top:10px; color:white;" id="Messages"> 
-        </div>  
-        
-        <style>
-            body{
-                margin: 0;
-                overflow: hidden; 
-            }
-        </style>
+        </div>
     </head>
     <body style="cursor: crosshair;">
         <!-- Div para mostrar mensajes personalizados -->
         <div id="message-card" class="message-card hidden">
             <div class="message-card-content">
-                <h2 id="message-card-text"></h2>
-                <button id="message-card-close">OK</button>
+                <div id="message-card-text"></div>
+                <span id="message-card-close">➯</span>
             </div>
         </div>
 
-        <!-- Div which will show statistical information -->
+        <!-- Div para mostrar la información estadísticas -->
         <div id="Stats-output">
         </div>
 
-        <!-- Div which will hold the Output -->
+        <!-- Div para contener el Output de WebGL -->
         <div id="WebGL-output">
         </div>
     </body>
@@ -53,22 +46,33 @@
         // Variable global para pausar/reanudar el loop
         window.isPaused = false;
 
+        const card = document.getElementById('message-card');
+        const textElem = document.getElementById('message-card-text');
+
         function showCard(text) {
-            const card = document.getElementById('message-card');
-            document.getElementById('message-card-text').innerText = text;
+            // Seteamos el texto y muestra la card
+            textElem.innerHTML = text;
             card.classList.remove('hidden');
 
             // Pausamos el loop de actualización
             window.isPaused = true;
-        }
-        
-        document.getElementById('message-card-close').addEventListener('click', () => {
-            document.getElementById('message-card').classList.add('hidden');
 
-            // Reanudamos el loop
-            window.isPaused = false;
-            // Volvemos a lanzar update()
-            window.scene.update();
-        });
+            // Listener global para cerrar al primer click
+            function closeOnClick() {
+                // Evitamos que siga hacia Three.js
+                event.stopPropagation();
+                event.preventDefault();
+
+                // Ocultamos y reanudamos
+                card.classList.add('hidden');
+                window.isPaused = false;
+                window.scene.update();
+
+                // Quitamos este listener
+                document.removeEventListener('mousedown', closeOnClick);
+            }
+
+            document.addEventListener('mousedown', closeOnClick);
+        }
     </script>
 </html>

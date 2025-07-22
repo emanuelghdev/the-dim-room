@@ -41,9 +41,8 @@ class MyCajaFusibles extends THREE.Object3D {
         abierta[0] = true;
     }
     else if(objeto.parent.parent == this.tapa && abierta[0] == false){  // Si el objeto clicado es la puerta y no tenemos la llave
-        showCard("La caja de fusibles está cerrada y parece necesitar una llave para poder abrirse" +
-                     "\n\nEs necesario OBTENER LA LLAVE primero" +
-                     "\n\nNo parece algo de lo que preocuparse sin tener la red eléctrica activa");
+        showCard("La caja de fusibles está cerrada con un pequeño candado" +
+                 "<p class='second-p'>Es necesario OBTENER LA LLAVE primero</p>");
     }
     else if(objeto.parent.parent == this.tapa){          // Si el objeto clicado es la puerta y está abierta la cerramos
         // Variables locales con los parámetros de interpolación, en este caso que la palanca se suba
