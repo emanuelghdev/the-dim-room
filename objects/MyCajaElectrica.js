@@ -66,11 +66,11 @@ class MyCajaElectrica extends THREE.Object3D {
     }
     else if (reparada[0] == false && arriba[0] == false){       // Si clicamos en el tubo y no está reparada la caja
         showCard("Parece hacer falta alguna herramienta para reparar el cableado" +
-                 "<p class='second-p'>Es necesario OBTENER LA HERRAMIENTA primero</p>");
+                 "<p class='second-p'>Es necesario <span class='gray-text'>OBTENER LA HERRAMIENTA</span> primero</p>");
     }   
     else if (reparada[0] == false){                             // Si clicamos en el tubo, no está reparada la caja y la corriente está activa
         showCard("No se puede tocar el cableado eléctrico con la corriente activa" +
-                 "<p class='second-p'>Es necesario DESACTIVAR LA CORRIENTE primero</p>");
+                 "<p class='second-p'>Es necesario <span class='red-text'>DESACTIVAR LA CORRIENTE</span> primero</p>");
     }
   }
 

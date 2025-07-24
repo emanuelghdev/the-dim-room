@@ -1931,14 +1931,14 @@ class MyScene extends THREE.Scene {
 
     // Creamos el string que saldrá cuanto se pulse "Q" por ayuda y "P" por la pista
     var str1 = "<p>Las acciones que se pueden realizar son las siguientes:</p>" + 
-                  "<ul><li>✦ Mover el personaje: Pulsar las teclas WASD o las teclas de dirección</li>" +
-                  "<li>✦ Mover la cámara: Mover el puntero del ratón</li>" +
-                  "<li>✦ Interactuar con los objetos: Clic izquierdo con el ratón</li>" +
-                  "<li>✦ Mostrar una pista: Pulsar la tecla P</li>" +
-                  "<li>✦ Activar/desactivar el modo desarrollador: Pulsar la tecla R</li></ul>" +
+                  "<ul><li><span class='green-text'>✦</span> Mover el personaje: Pulsar las teclas WASD o las teclas de dirección</li>" +
+                  "<li><span class='green-text'>✦</span> Mover la cámara: Mover el puntero del ratón</li>" +
+                  "<li><span class='green-text'>✦</span> Interactuar con los objetos: Clic izquierdo con el ratón</li>" +
+                  "<li><span class='green-text'>✦</span> Mostrar una pista: Pulsar la tecla P</li>" +
+                  "<li><span class='green-text'>✦</span> Activar/desactivar el modo desarrollador: Pulsar la tecla R</li></ul>" +
                   "<p>NOTA: Para abrir la puerta es necesario hacer clic sobre el POMO de la puerta</p>";
 
-    var str2 = "<p>La clave está en los OBJETOS ROJOS... aunque no en todos...</p>";
+    var str2 = "<p>La clave está en los <span class='red-text'>OBJETOS ROJOS...</span> aunque no en todos...</p>";
 
     // Según la tecla que se pulse hacemos un tratamiento u otro
     switch(x){
@@ -2308,7 +2308,9 @@ class MyScene extends THREE.Scene {
           }
 
           // Accionamos el sonido de los cajones
-          this.sonidoCajones.play();
+          setTimeout(() => {
+            this.sonidoCajones.play();
+          }, 400);
 
           // Variables locales con los parámetros de interpolación, en este caso que el cajon se abra
           var origen1 = selectedObject.position;
@@ -2337,7 +2339,9 @@ class MyScene extends THREE.Scene {
           }
 
           // Accionamos el sonido de los cajones
-          this.sonidoCajones.play();
+          setTimeout(() => {
+            this.sonidoCajones.play();
+          }, 400);
 
           // Variables locales con los parámetros de interpolación, en este caso que el cajon se abra
           var origen1 = selectedObject.position;
@@ -2363,7 +2367,9 @@ class MyScene extends THREE.Scene {
           }
 
           // Accionamos el sonido de los cajones
-          this.sonidoCajones.play();
+          setTimeout(() => {
+            this.sonidoCajones.play();
+          }, 400);
 
           // Variables locales con los parámetros de interpolación, en este caso que el cajon se abra
           var origen1 = selectedObject.position;
@@ -2391,7 +2397,9 @@ class MyScene extends THREE.Scene {
           }
 
           // Accionamos el sonido de los cajones
-          this.sonidoCajones.play();
+          setTimeout(() => {
+            this.sonidoCajones.play();
+          }, 400);
 
           // Variables locales con los parámetros de interpolación, en este caso que el cajon se abra
           var origen1 = selectedObject.position;
@@ -2422,7 +2430,9 @@ class MyScene extends THREE.Scene {
           }
 
           // Accionamos el sonido de los cajones
-          this.sonidoCajones.play();
+          setTimeout(() => {
+            this.sonidoCajones.play();
+          }, 400);
 
           // Variables locales con los parámetros de interpolación, en este caso que el cajon se abra
           var origen1 = selectedObject.position;
@@ -2473,7 +2483,9 @@ class MyScene extends THREE.Scene {
           }
 
           // Accionamos el sonido de los cajones
-          this.sonidoCajones.play();
+          setTimeout(() => {
+            this.sonidoCajones.play();
+          }, 400);
 
           // Variables locales con los parámetros de interpolación, en este caso que el cajon se abra
           var origen1 = selectedObject.position;
@@ -2501,7 +2513,9 @@ class MyScene extends THREE.Scene {
           }
 
           // Accionamos el sonido de los cajones
-          this.sonidoCajones.play();
+          setTimeout(() => {
+            this.sonidoCajones.play();
+          }, 400);
 
           // Variables locales con los parámetros de interpolación, en este caso que el cajon se abra
           var origen1 = selectedObject.position;
@@ -2533,7 +2547,9 @@ class MyScene extends THREE.Scene {
           }
 
           // Accionamos el sonido de los cajones
-          this.sonidoCajones.play();
+          setTimeout(() => {
+            this.sonidoCajones.play();
+          }, 400);
 
           // Variables locales con los parámetros de interpolación, en este caso que el cajon se abra
           var origen1 = selectedObject.position;
@@ -2561,7 +2577,9 @@ class MyScene extends THREE.Scene {
           }
 
           // Accionamos el sonido de los cajones
-          this.sonidoCajones.play();
+          setTimeout(() => {
+            this.sonidoCajones.play();
+          }, 400);
 
           // Variables locales con los parámetros de interpolación, en este caso que el cajon se abra
           var origen1 = selectedObject.position;
@@ -2590,7 +2608,9 @@ class MyScene extends THREE.Scene {
           }
 
           // Accionamos el sonido de los cajones
-          this.sonidoCajones.play();
+          setTimeout(() => {
+            this.sonidoCajones.play();
+          }, 400);
 
           // Variables locales con los parámetros de interpolación, en este caso que el cajon se abra
           var origen1 = selectedObject.position;
@@ -2618,7 +2638,9 @@ class MyScene extends THREE.Scene {
           }
 
           // Accionamos el sonido de los cajones
-          this.sonidoCajones.play();
+          setTimeout(() => {
+            this.sonidoCajones.play();
+          }, 400);
 
           // Variables locales con los parámetros de interpolación, en este caso que el cajon se abra
           var origen1 = selectedObject.position;
@@ -2744,7 +2766,7 @@ class MyScene extends THREE.Scene {
         selectedObject.visible = false;
         this.poseerLlaveInglesa[0] = true;
 
-        showCard("Has obtenido LLAVE INGLESA");
+        showCard("Has obtenido <span class='gray-text'>LLAVE INGLESA</span>");
       }
     }
   }
@@ -2844,7 +2866,7 @@ class MyScene extends THREE.Scene {
       }
       else {
         showCard("Se trata de una caja fuerte electroimantada, se necesita de corriente eléctrica para abrirla" +
-                 "<p class='second-p'>Es necesario REPARAR LA ELECTRICIDAD primero</p>");
+                 "<p class='second-p'>Es necesario <span class='yellow-text'>REPARAR LA ELECTRICIDAD</span> primero</p>");
       }
     }
   }
@@ -2865,7 +2887,7 @@ class MyScene extends THREE.Scene {
         selectedObject.visible = false;
         this.poseerLlaveSeguridad[0] = true;
 
-        showCard("Has obtenido LLAVE DE SEGURIDAD");
+        showCard("Has obtenido <span class='red-text'>LLAVE DE SEGURIDAD</span>");
       }
     }
   }
@@ -2953,12 +2975,12 @@ class MyScene extends THREE.Scene {
         if(this.luzReparada[0] && this.palancaArriba[0]){
           // Se muestra el mensaje sin haber terminado de completar todos los pasos
           showCard("La puerta se abre eléctricamente, pero por algún motivo parece no estar conectada a la luz" +
-                   "<p class='second-p'>Es necesario ACTIVAR LA CORRIENTE DE LA PUERTA primero</p>");
+                   "<p class='second-p'>Es necesario <span class='red-text'>ACTIVAR LA CORRIENTE DE LA PUERTA</span> primero</p>");
         }
         else{
           // Se muestra el mensaje sin haber encendido la luz aún
           showCard("La puerta se abre eléctricamente, pero parece no haber corriente" +
-                   "<p class='second-p'>Es necesario REPARAR LA ELECTRICIDAD primero</p>");
+                   "<p class='second-p'>Es necesario <span class='yellow-text'>REPARAR LA ELECTRICIDAD</span> primero</p>");
         }
       }
     }

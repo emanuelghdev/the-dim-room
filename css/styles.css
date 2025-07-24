@@ -81,6 +81,27 @@ body {
     100% { transform: scale(1); }
 }
 
+/* Estilos para destacar texto */
+.red-text {
+    font-weight: bold;
+    color: #ca0000;
+}
+
+.yellow-text {
+    font-weight: bold;
+    color: #ffd716;
+}
+
+.gray-text {
+    font-weight: bold;
+    color: #8f9195;
+}
+
+.green-text {
+    font-weight: bold;
+    color: #00913f;
+}
+
 /* Overlay de inicio */
 #loader-screen {
     position: fixed;
@@ -275,6 +296,11 @@ body {
 
 .end-screen-text p {
     font-size: 1.25rem;
+}
+
+/* Estilos enlaces pantalla final */
+.end-screen-text a {
+    font-weight: bold;
 }
 
 .end-screen-text a:link {
