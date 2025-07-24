@@ -24,7 +24,7 @@
         </div>
     </head>
     <body style="cursor: crosshair;">
-        <!-- Overlay de carga -->
+        <!-- Pantalla de inicio -->
         <div id="loader-screen">
             <div id="loader-logo">
                 <h1 id="title">
@@ -57,11 +57,24 @@
         </div>
 
         <!-- Div para mostrar la información estadísticas -->
-        <div id="Stats-output">
+        <div id="Stats-output" style="display: none;">
         </div>
 
         <!-- Div para contener el Output de WebGL -->
         <div id="WebGL-output">
+        </div>
+
+        <!-- Pantalla final -->
+        <div id="end-screen" class="end-screen hidden">
+            <div class="end-screen-content">
+                <h1>The Dim Room</h1>
+                <div class="end-screen-text">
+                    <p>Has podido salir de la habitacion... <b>¡Felicidades, te has pasado el juego!</b></p>
+                    <p>Esto que acabas de jugar es un proyecto personal creado con WebGL y Three.js</p>
+                    <p>Si te interesa como está hecho es de código abierto y está disponible  <a href="https://github.com/emanuelghdev/the-dim-room">aquí</a></p>
+                </div>
+                <button id="end-restart">Volver a jugar</button>
+            </div>
         </div>
     </body>
 
@@ -79,6 +92,8 @@
         const loaderText = document.getElementById('loader-text');
         const card = document.getElementById('message-card');
         const textElem = document.getElementById('message-card-text');
+        const endScreen    = document.getElementById('end-screen');
+        const btnRestart   = document.getElementById('end-restart');
 
         // Función para mostrar mensajes en la partida
         function showCard(text) {
@@ -120,9 +135,10 @@
             window.canStart = true;
         };
 
-        // Función de carga y arranque
+        // Función de carga e inicio
         function startGame() {
             loaderScreen.style.display = 'none';
+            document.getElementById('Stats-output').style.display  = 'block';
             window.isPaused = false;
             scene.update();
             
@@ -145,5 +161,22 @@
             e.stopPropagation();
             e.preventDefault();
         });
+
+        // Función para mostrar la pantalla final
+        function showEndScreen() {
+            window.isPaused = true;
+
+            // Ocultamos stats/canvas
+            document.getElementById('Stats-output').style.display  = 'none';
+            document.getElementById('WebGL-output').style.filter   = 'blur(4px)';
+            endScreen.classList.remove('hidden');
+        }
+
+        // Handler para reiniciar
+        btnRestart.addEventListener('click', () => {
+            location.reload();
+        });
+
+        window.showEndScreen = showEndScreen;
     </script>
 </html>

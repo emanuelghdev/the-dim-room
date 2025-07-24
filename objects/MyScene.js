@@ -2964,13 +2964,8 @@ class MyScene extends THREE.Scene {
     }
 
     function finalJuego (that) {
-      // Creamos el string que saldrá al pasarse el juego
-      var str = "<h2>THE DIM ROOM</h2>" +
-                "<p class='second-p'>Has podido salir de la habitacion</p>" +
-                "<p class='second-p'>¡Felicidades, te has pasado el juego!</p>";
-
-      // Se muestra el mensaje tras abrir la puerta
-      showCard(str);
+      // Se muestra la pantalla final tras abrir la puerta
+      showEndScreen();
 
       that.modoJuegoTerminado = true;
     }
