@@ -114,6 +114,16 @@
                 // Ocultamos y reanudamos
                 card.classList.add('hidden');
                 window.isPaused = false;
+
+                // Drenamos el delta acumulado durante la pausa
+                window.scene.clock.getDelta();
+
+                // Reseteamos cualquier movimiento de ratón "en el aire"
+                const ctrl = window.scene.cameraControl;
+                ctrl.pointerX = 0;
+                ctrl.pointerY = 0;
+
+                // Volvemos a arrancar el bucle de animación
                 window.scene.update();
 
                 // Quitamos este listener
