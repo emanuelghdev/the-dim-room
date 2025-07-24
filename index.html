@@ -24,6 +24,30 @@
         </div>
     </head>
     <body style="cursor: crosshair;">
+        <!-- Overlay de carga -->
+        <div id="loader-screen">
+            <div id="loader-logo">
+                <h1 id="title">
+                    <span id="T">T</span>
+                    <span id="H">h</span>
+                    <span id="E">e</span>
+                    <span class="sp">&nbsp;</span>
+                    <span id="D">D</span>
+                    <span id="I">i</span>
+                    <span id="M">m</span>
+                    <span class="sp">&nbsp;</span>
+                    <span id="R">R</span>
+                    <span id="O1">o</span>
+                    <span id="O2">o</span>
+                    <span id="M2">m</span>
+                </h1>
+            </div>
+            <div id="loader-bar-container">
+                <div id="loader-bar"></div>
+            </div>
+            <div id="loader-text"><p>Loading: 0%</p></div>
+        </div>
+
         <!-- Div para mostrar mensajes personalizados -->
         <div id="message-card" class="message-card hidden">
             <div class="message-card-content">
@@ -41,14 +65,22 @@
         </div>
     </body>
 
-    <!-- Script de control de la card -->
-    <script>
-        // Variable global para pausar/reanudar el loop
-        window.isPaused = false;
+    <script type="module">
+        import * as THREE from 'three';
+        import { MyScene } from './objects/MyScene.js';
+        
+        // Variables globales
+        window.isPaused = false;        // Para pausar/reanudar el loop
+        window.canStart = false;        // Para permitir entrar al juego tras carga
 
+        // Referencias DOM
+        const loaderScreen = document.getElementById('loader-screen');
+        const loaderBar = document.getElementById('loader-bar');
+        const loaderText = document.getElementById('loader-text');
         const card = document.getElementById('message-card');
         const textElem = document.getElementById('message-card-text');
 
+        // Función para mostrar mensajes en la partida
         function showCard(text) {
             // Seteamos el texto y muestra la card
             textElem.innerHTML = text;
@@ -71,8 +103,47 @@
                 // Quitamos este listener
                 document.removeEventListener('mousedown', closeOnClick);
             }
-
             document.addEventListener('mousedown', closeOnClick);
         }
+
+        window.showCard = showCard;
+
+        // Configuración de LoadingManager de Three.js
+        THREE.DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
+            const prog = Math.round(itemsLoaded / itemsTotal * 100);
+            loaderBar.style.width = prog + '%';
+            loaderText .innerHTML = `<p>Loading: ${prog}%</p>`;
+        };
+        THREE.DefaultLoadingManager.onLoad = () => {
+            loaderBar.style.width = '100%';
+            loaderText.innerHTML = '<p>Carga completada</p> <p>(Haz click para comenzar)</p>';
+            window.canStart = true;
+        };
+
+        // Función de carga y arranque
+        function startGame() {
+            loaderScreen.style.display = 'none';
+            window.isPaused = false;
+            scene.update();
+            
+            // Eliminamos el listener
+            loaderScreen.removeEventListener('mousedown', onStartClick);
+        }
+
+        function onStartClick(e) {
+            if (!window.canStart) return;
+            if (loaderScreen.style.display === 'none') return;
+            if (e.button !== 0) return;  // Solo botón izquierdo
+            e.preventDefault();
+            startGame();
+        }
+
+        loaderScreen.addEventListener('mousedown', onStartClick);
+
+        // Evitamos el raycast mientras loader activo
+        loaderScreen.addEventListener('mousedown', e => {
+            e.stopPropagation();
+            e.preventDefault();
+        });
     </script>
 </html>

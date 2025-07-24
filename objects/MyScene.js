@@ -7,6 +7,7 @@ import { GUI } from '../libs/dat.gui.module.js'
 import { TrackballControls } from '../libs/TrackballControls.js'
 import { Stats } from '../libs/stats.module.js'
 import { FirstPersonControls } from '../libs/FirstPersonControls.js'
+export { MyScene };
 
 // Clases de mi proyecto
 
