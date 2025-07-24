@@ -55,6 +55,9 @@ class MyScene extends THREE.Scene {
     
     this.initStats();
 
+    // Creamos un Three.Clock para calcular los frames reales
+    this.clock = new THREE.Clock();
+
     // Iniciamos todas las variables
     this.initVariables();
     
@@ -1015,8 +1018,8 @@ class MyScene extends THREE.Scene {
       this.cameraControl = new FirstPersonControls(this.camera, this.renderer.domElement);
 
       // Inicializamos las propiedades de la cámara en primera persona
-      this.cameraControl.movementSpeed = 2.5;
-      this.cameraControl.lookSpeed = 0.005;
+      this.cameraControl.movementSpeed = 150;
+      this.cameraControl.lookSpeed = 0.3;
       this.cameraControl.constrainVertical = true;    // Delimitar verticalmente hasta donde se puede mirar
       this.cameraControl.verticalMin = 1.0;
       this.cameraControl.verticalMax = Math.PI - 0.4;
@@ -3030,7 +3033,7 @@ class MyScene extends THREE.Scene {
 
         // Actualizamos la cámara con la posiicón que queremos 
         this.camera.position.copy(this.posicion);
-        this.cameraControl.movementSpeed = 2.5;
+        this.cameraControl.movementSpeed = 150;
       }
     }
   }
@@ -3041,6 +3044,9 @@ class MyScene extends THREE.Scene {
     if (window.isPaused) return;
 
     if (this.stats) this.stats.update();
+
+    // Calculamos el delta entre frames
+    const delta = this.clock.getDelta();
     
     // Se actualizan los elementos de la escena para cada frame
 
@@ -3050,11 +3056,11 @@ class MyScene extends THREE.Scene {
     
     // Se actualiza la posición de la cámara según su controlador
     if(this.modoJuegoTerminado == false){         // Si el juego no está terminado
-      this.cameraControl.update(1);
+      this.cameraControl.update(delta);
       this.comprobarColisiones();
     }
     else if(this.modoDesarrollador == true){      // Si está terminado y queremos verlo en modo desarrollador
-      this.cameraControl.update(1);
+      this.cameraControl.update(delta);
     }
 
     // Se actualiza la GUI
@@ -3133,7 +3139,6 @@ class MyScene extends THREE.Scene {
     // Si no existiera esta línea,  update()  se ejecutaría solo la primera vez.
     requestAnimationFrame(() => this.update())
   }
-
 
   setMessage(str){
     document.getElementById("Messages").innerHTML = "<h2>" + str + "</h2>";
