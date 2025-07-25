@@ -120,8 +120,8 @@
 
                 // Reseteamos cualquier movimiento de ratón "en el aire"
                 const ctrl = window.scene.cameraControl;
-                ctrl.pointerX = 0;
-                ctrl.pointerY = 0;
+                ctrl.pointerX = 2;      // Añadimos una ligera inclinación para que la cámara no se quede estática
+                ctrl.pointerY = 2;      // y de sensación antinatural de bug o crasheo al no haber nada de movimiento
 
                 // Volvemos a arrancar el bucle de animación
                 window.scene.update();
